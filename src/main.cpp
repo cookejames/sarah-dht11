@@ -1,4 +1,4 @@
-#define VERSION "1"
+#define VERSION "2"
 #include "SarahHome.h"
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
@@ -14,7 +14,7 @@ unsigned long lastTemperaturePublish = 0;
 unsigned long timeBetweenPublish = 300000; //5 minutes
 
 #define DHTPIN 2
-#define DHTTYPE DHT22
+#define DHTTYPE DHT11
 DHT_Unified dht(DHTPIN, DHTTYPE);
 
 void setup()
@@ -58,7 +58,7 @@ void publishTemperature() {
 void loop() {
   sarahHome.loop();
 
-  publishTemperature();
-
-  delay(1000);
+  if (sarahHome.timer(30000)) {
+    publishTemperature();
+  }
 }

@@ -3,3 +3,4 @@
 .gcc-flags.json
 lib/KeyValueStore
 lib/SarahHome
+.piolibdeps
